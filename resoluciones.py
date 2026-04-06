@@ -36,4 +36,4 @@ clauses = [
     {"¬Mata_Curiosidad_Tuna"}
 ]
 
-print("¿Se prueba?", resolution(clauses))
+print("si o no?", resolution(clauses))
