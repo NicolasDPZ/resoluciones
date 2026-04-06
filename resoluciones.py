@@ -1,39 +1,64 @@
-def negate(literal):
-    return literal[1:] if literal.startswith("~") else "~" + literal
+def negar(letra):
+    return letra[1:] if letra.startswith("~") else "~" + letra
 
 
-def resolve(c1, c2):
-    resolvents = []
+def resolver(c1, c2):
+    resolvible = []
     for l in c1:
-        if negate(l) in c2:
-            new_clause = (c1 - {l}) | (c2 - {negate(l)})
-            resolvents.append(new_clause)
-    return resolvents
+        if negar(l) in c2:
+            nueva_clausula = (c1 - {l}) | (c2 - {negar(l)})
+            resolvible.append(nueva_clausula)
+    return resolvible
+    
 
-
-def resolution(clauses):
-    clauses = [set(c) for c in clauses]
+def resolucion(clausulas):
+    clausulas = [set(c) for c in clausulas]
 
     while True:
-        new = []
-        for i in range(len(clauses)):
-            for j in range(i + 1, len(clauses)):
-                resolvents = resolve(clauses[i], clauses[j])
-                for r in resolvents:
-                    if not r:
-                        return True  # cláusula vacía → éxito
-                    if r not in clauses and r not in new:
-                        new.append(r)
+        nuevas = []
+        for i in range(len(clausulas)):
+            for j in range(i + 1, len(clausulas)):
 
-        if not new:
+                resolvible = resolver(clausulas[i], clausulas[j])
+
+                for r in resolvible:
+                    if not r:
+                        return True
+                    if r not in clausulas and r not in nuevas:
+                        nuevas.append(r)
+
+        if not nuevas:
             return False
 
-        clauses.extend(new)
+        clausulas.extend(nuevas)
 
-clauses = [
-    {"Mata_Jack_Tuna", "Mata_Curiosidad_Tuna"},
-    {"¬Mata_Jack_Tuna"},
-    {"¬Mata_Curiosidad_Tuna"}
+
+#usos para probar
+
+clausulas = [
+    {"~Llueve", "Trafico"},  
+    {"Llueve"},
+    {"~Trafico"}
 ]
 
-print("si o no?", resolution(clauses))
+clausulas2 = [
+    {"A", "B"},
+    {"~A"},
+    {"~B"}
+]
+
+clausulas3 = [
+    {"A", "B"},
+    {"~A"}
+]
+
+clausulastaller = [
+    {"Mata_Jack_Tuna", "Mata_Curiosidad_Tuna"},
+    {"~Mata_Jack_Tuna"},
+    {"~Mata_Curiosidad_Tuna"}
+]
+
+print("si o no?", resolucion(clausulas))
+print("si o no?", resolucion(clausulas2))
+print("si o no?", resolucion(clausulas3))
+print("si o no?", resolucion(clausulastaller))
