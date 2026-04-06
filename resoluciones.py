@@ -1,6 +1,11 @@
+#funcion para negar una letra, si la letra empieza con "~" se le quita, si no, se le agrega "~" al inicio
+
 def negar(letra):
     return letra[1:] if letra.startswith("~") else "~" + letra
 
+#funcion para resolver dos clausulas, se busca una letra en la primera clausula que tenga su negacion en 
+# la segunda clausula, si se encuentra, se crea una nueva clausula que es la union de las dos clausulas 
+# sin la letra y su negacion, y se agrega a la lista de resolvibles
 
 def resolver(c1, c2):
     resolvible = []
@@ -10,6 +15,11 @@ def resolver(c1, c2):
             resolvible.append(nueva_clausula)
     return resolvible
     
+#funcion para aplicar el algoritmo de resolucion a una lista de clausulas, se convierte cada clausula 
+# a un conjunto para facilitar las operaciones de union y diferencia, luego se iteran todas las combinaciones 
+# de clausulas y se aplican las resoluciones, si se encuentra una clausula vacia se retorna True, si no se 
+# encuentran nuevas clausulas se retorna False, si se encuentran nuevas clausulas se agregan a la lista de 
+# clausulas y se repite el proceso
 
 def resolucion(clausulas):
     clausulas = [set(c) for c in clausulas]
@@ -33,7 +43,7 @@ def resolucion(clausulas):
         clausulas.extend(nuevas)
 
 
-#usos para probar
+#usos para probar las clausulas 
 
 clausulas = [
     {"~Llueve", "Trafico"},  
@@ -58,7 +68,7 @@ clausulastaller = [
     {"~Mata_Curiosidad_Tuna"}
 ]
 
-print("si o no?", resolucion(clausulas))
+print("llueve?", resolucion(clausulas))
 print("si o no?", resolucion(clausulas2))
 print("si o no?", resolucion(clausulas3))
-print("si o no?", resolucion(clausulastaller))
+print("curiosidad mata al gato?", resolucion(clausulastaller))
