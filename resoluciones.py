@@ -35,30 +35,44 @@ def resolucion(clausulas):
 
 #usos para probar las clausulas 
 
-clausulas = [
-    {"~Llueve", "Trafico"},  
-    {"Llueve"},
-    {"~Trafico"}
+#clausulas = [
+#    {"~Llueve", "Trafico"},  
+#    {"Llueve"},
+#    {"~Trafico"}
+#]
+#
+#clausulas2 = [
+#    {"A", "B"},
+#    {"~A"},
+#    {"~B"}
+#]
+#
+#clausulas3 = [
+#    {"A", "B"},
+#    {"~A"}
+#]
+#
+#clausulastaller = [
+#    {"Mata_Jack_Tuna", "Mata_Curiosidad_Tuna"},
+#    {"~Mata_Jack_Tuna"},
+#    {"~Mata_Curiosidad_Tuna"}
+#]
+#
+clausulas_sustentacion = [
+    {"pitufo_grunon"},                                                          
+    {"leal_grunon"},                                                            
+    {"~pitufo_grunon", "~pitufo_tonto", "amigos_grunon_tonto"},                 
+    {"amigos_grunon_tonto"},                                                    
+    {"~amigos_grunon_tonto", "apoyan_grunon_tonto", "alejado_grunon_tonto"},    
+    {"alejado_grunon_tonto"},                                                   
+    {"~alejado_grunon_tonto", "no_interesan_grunon_tonto"},                     
+    {"~no_interesan_grunon_tonto", "dejo_amigo_grunon_tonto"},                 
+    {"~dejo_amigo_grunon_tonto"},                                             
 ]
 
-clausulas2 = [
-    {"A", "B"},
-    {"~A"},
-    {"~B"}
-]
 
-clausulas3 = [
-    {"A", "B"},
-    {"~A"}
-]
-
-clausulastaller = [
-    {"Mata_Jack_Tuna", "Mata_Curiosidad_Tuna"},
-    {"~Mata_Jack_Tuna"},
-    {"~Mata_Curiosidad_Tuna"}
-]
-
-print("llueve?", resolucion(clausulas))
-print("si o no?", resolucion(clausulas2))
-print("si o no?", resolucion(clausulas3))
-print("curiosidad mata al gato?", resolucion(clausulastaller))
+print("¿Gruñón dejó de considerar a Tonto su amigo?", resolucion(clausulas_sustentacion))
+# print("llueve?", resolucion(clausulas))
+# print("si o no?", resolucion(clausulas2))
+# print("si o no?", resolucion(clausulas3))
+# print("curiosidad mata al gato?", resolucion(clausulastaller))
